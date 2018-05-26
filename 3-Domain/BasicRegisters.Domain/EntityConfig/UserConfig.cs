@@ -8,15 +8,18 @@ namespace BasicRegisters.Domain.EntityConfig
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("Users");
+
             builder.HasKey(c => c.UserID);
+
 
             builder
                 .Property(c => c.UserID)
-                .HasMaxLength(20);
+                .HasColumnType("varchar(20)");
 
             builder
                 .Property(c => c.AccessKey)
-                .HasMaxLength(32);
+                .HasColumnType("varchar(32)");
         }
     }
 }

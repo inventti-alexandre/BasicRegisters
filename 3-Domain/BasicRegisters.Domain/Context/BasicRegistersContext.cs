@@ -1,4 +1,5 @@
 ﻿using BasicRegisters.Domain.Domain;
+using BasicRegisters.Domain.EntityConfig;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFGetStarted.AspNetCore.NewDb.Models
@@ -12,5 +13,11 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
         public DbSet<Teste> Testes { get; set; }
         public DbSet<User> Users { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UserConfig());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
