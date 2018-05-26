@@ -6,17 +6,21 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
 {
     public class UserServices
     {
-        private BasicRegistersContext _context;
+        private readonly BasicRegistersContext _context;
 
+        //public UserServices()
         public UserServices(BasicRegistersContext context)
         {
             _context = context;
         }
             
-        public User Find(string userID)
+        public UserDto Find(string userID)
         {
-            return _context.Users
+            var user = _context.Users
                 .FirstOrDefault(c => c.UserID == userID);
+
+            return new UserDto { UserID = user.UserID, AccessKey = user.AccessKey };
+            //return new UserDto { UserID = "123", AccessKey = "123" };
         }
 
     }
