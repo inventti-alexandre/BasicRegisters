@@ -9,6 +9,8 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
             : base(options)
         { }
 
-        public DbSet<Teste> Teste { get; set; }
+        public DbSet<Teste> Testes { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }
