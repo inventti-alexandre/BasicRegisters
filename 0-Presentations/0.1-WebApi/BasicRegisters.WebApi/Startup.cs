@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using BasicRegisters.Application.Services.UserServices.Dtos;
 using BasicRegisters.Application.Services.LoginServices.Dtos;
+using EFGetStarted.AspNetCore.NewDb.Models;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace BasicRegisters.WebApi
 {
@@ -22,6 +25,13 @@ namespace BasicRegisters.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+              .SetBasePath(Directory.GetCurrentDirectory())
+              .AddJsonFile("appsettings.json")
+              .Build();
+
+            services.AddDbContext<BasicRegistersContext>(x => x.UseSqlServer(configuration.GetConnectionString("Defa‌​ultConnection")));
             services.AddTransient<UserServices>();
 
             var signingConfigurations = new SigningConfigurations();
