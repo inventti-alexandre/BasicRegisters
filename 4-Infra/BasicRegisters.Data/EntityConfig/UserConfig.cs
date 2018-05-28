@@ -10,8 +10,7 @@ namespace BasicRegisters.Domain.EntityConfig
         {
             builder.ToTable("Users");
 
-            builder.HasKey(c => c.UserID);
-
+            builder.HasKey(c => c.Id);
 
             builder
                 .Property(c => c.UserID)

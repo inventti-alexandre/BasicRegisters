@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BasicRegisters.Data.Migrations
 {
-    public partial class jh : Migration
+    public partial class Novo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,12 +25,13 @@ namespace BasicRegisters.Data.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserID = table.Column<string>(type: "varchar(20)", nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
+                    UserID = table.Column<string>(type: "varchar(20)", nullable: true),
                     AccessKey = table.Column<string>(type: "varchar(32)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserID);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
         }
 

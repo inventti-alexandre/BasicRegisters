@@ -34,14 +34,16 @@ namespace BasicRegisters.Data.Migrations
 
             modelBuilder.Entity("BasicRegisters.Domain.Domain.User", b =>
                 {
-                    b.Property<string>("UserID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(20)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("AccessKey")
                         .HasColumnType("varchar(32)");
 
-                    b.HasKey("UserID");
+                    b.Property<string>("UserID")
+                        .HasColumnType("varchar(20)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });

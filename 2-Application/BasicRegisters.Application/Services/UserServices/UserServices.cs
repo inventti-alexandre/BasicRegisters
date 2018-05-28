@@ -20,7 +20,7 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
 
             if (user == null) return new UserDto { UserID = null, Id = Guid.Empty, AccessKey = null };
 
-            return new UserDto { UserID = user.UserID, AccessKey = user.AccessKey };
+            return new UserDto { UserID = user.UserID, AccessKey = user.AccessKey, Id= user.Id };
         }
 
         public void Dispose()
