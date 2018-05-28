@@ -5,9 +5,6 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
 {
     public class SigningConfigurations
     {
-        public SecurityKey Key { get; }
-        public SigningCredentials SigningCredentials { get; }
-
         public SigningConfigurations()
         {
             using (var provider = new RSACryptoServiceProvider(2048))
@@ -18,5 +15,8 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
             SigningCredentials = new SigningCredentials(
                 Key, SecurityAlgorithms.RsaSha256Signature);
         }
+
+        public SecurityKey Key { get; }
+        public SigningCredentials SigningCredentials { get; }
     }
 }

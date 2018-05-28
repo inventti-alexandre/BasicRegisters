@@ -23,6 +23,16 @@ namespace BasicRegisters.WebApi
 
         public IConfiguration Configuration { get; }
 
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseMvc();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -75,16 +85,6 @@ namespace BasicRegisters.WebApi
             });
 
             services.AddMvc();
-        }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseMvc();
         }
     }
 }

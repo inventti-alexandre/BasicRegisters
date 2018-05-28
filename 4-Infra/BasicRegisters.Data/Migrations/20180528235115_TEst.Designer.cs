@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasicRegisters.Data.Migrations
 {
     [DbContext(typeof(BasicRegistersContext))]
-    [Migration("20180528222746_Novo")]
-    partial class Novo
+    [Migration("20180528235115_TEst")]
+    partial class TEst
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,19 +20,6 @@ namespace BasicRegisters.Data.Migrations
                 .HasAnnotation("ProductVersion", "2.1.0-rc1-32029")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BasicRegisters.Domain.Domain.Teste", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("Hash");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Testes");
-                });
 
             modelBuilder.Entity("BasicRegisters.Domain.Domain.User", b =>
                 {
@@ -48,6 +35,32 @@ namespace BasicRegisters.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("BasicRegisters.Domain.Entidades.Conta", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Apelido");
+
+                    b.Property<bool>("Ativo");
+
+                    b.Property<DateTime>("DataDeCadastro");
+
+                    b.Property<DateTime>("DataDeExclusao");
+
+                    b.Property<bool>("Excluido");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<Guid>("UsuarioDeCadastroId");
+
+                    b.Property<Guid>("UsuarioDeExlusaoId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contas");
                 });
 #pragma warning restore 612, 618
         }

@@ -19,19 +19,6 @@ namespace BasicRegisters.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BasicRegisters.Domain.Domain.Teste", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("Hash");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Testes");
-                });
-
             modelBuilder.Entity("BasicRegisters.Domain.Domain.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -46,6 +33,32 @@ namespace BasicRegisters.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("BasicRegisters.Domain.Entidades.Conta", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Apelido");
+
+                    b.Property<bool>("Ativo");
+
+                    b.Property<DateTime>("DataDeCadastro");
+
+                    b.Property<DateTime>("DataDeExclusao");
+
+                    b.Property<bool>("Excluido");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<Guid>("UsuarioDeCadastroId");
+
+                    b.Property<Guid>("UsuarioDeExlusaoId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contas");
                 });
 #pragma warning restore 612, 618
         }

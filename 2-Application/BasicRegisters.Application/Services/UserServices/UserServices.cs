@@ -13,6 +13,11 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
             _context = context;
         }
 
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
+
         public UserDto Find(string userID)
         {
             var user = _context.Users
@@ -20,12 +25,7 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
 
             if (user == null) return new UserDto { UserID = null, Id = Guid.Empty, AccessKey = null };
 
-            return new UserDto { UserID = user.UserID, AccessKey = user.AccessKey, Id= user.Id };
-        }
-
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            return new UserDto { UserID = user.UserID, AccessKey = user.AccessKey, Id = user.Id };
         }
     }
 }

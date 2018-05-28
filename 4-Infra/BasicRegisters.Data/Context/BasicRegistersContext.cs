@@ -1,4 +1,6 @@
 ﻿using BasicRegisters.Domain.Domain;
+using BasicRegisters.Domain.Entidades;
+using BasicRegisters.Domain.Entidades.Interfaces;
 using BasicRegisters.Domain.EntityConfig;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,15 +14,12 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
             : base(options)
         { }
 
-        public DbSet<Teste> Testes { get; set; }
+        public DbSet<Conta> Contas { get; set; }
+
+        //public DbSet<IPessoaFisica> PessoasFisicas { get; set; }
+        //public DbSet<IPessoaFisica> PessoasJuridicas { get; set; }
+        //public DbSet<ITelefone> Telefones { get; set; }
         public DbSet<User> Users { get; set; }
-
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new UserConfig());
-            base.OnModelCreating(modelBuilder);
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,6 +29,12 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
                 .Build();
 
             optionsBuilder.UseSqlServer(config.GetConnectionString("Defa‌​ultConnection"));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UserConfig());
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
