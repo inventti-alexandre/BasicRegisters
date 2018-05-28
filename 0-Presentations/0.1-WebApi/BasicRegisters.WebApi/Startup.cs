@@ -1,15 +1,15 @@
-﻿using System;
+﻿using BasicRegisters.Application.Services.LoginServices.Dtos;
+using BasicRegisters.Application.Services.UserServices.Dtos;
+using EFGetStarted.AspNetCore.NewDb.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using BasicRegisters.Application.Services.UserServices.Dtos;
-using BasicRegisters.Application.Services.LoginServices.Dtos;
-using EFGetStarted.AspNetCore.NewDb.Models;
-using Microsoft.EntityFrameworkCore;
+using System;
 using System.IO;
 
 namespace BasicRegisters.WebApi
@@ -25,7 +25,6 @@ namespace BasicRegisters.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             IConfigurationRoot configuration = new ConfigurationBuilder()
               .SetBasePath(Directory.GetCurrentDirectory())
               .AddJsonFile("appsettings.json")
@@ -42,7 +41,6 @@ namespace BasicRegisters.WebApi
                 Configuration.GetSection("TokenConfigurations"))
                     .Configure(tokenConfigurations);
             services.AddSingleton(tokenConfigurations);
-
 
             services.AddAuthentication(authOptions =>
             {

@@ -1,13 +1,13 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using BasicRegisters.Application.Services.LoginServices.Dtos;
+using BasicRegisters.Application.Services.UserServices.Dtos;
+using BasicRegisters.WebApi.ViewModels.Login;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
-using Microsoft.IdentityModel.Tokens;
-using BasicRegisters.WebApi.ViewModels.Login;
-using BasicRegisters.Application.Services.UserServices.Dtos;
-using BasicRegisters.Application.Services.LoginServices.Dtos;
 
 namespace BasicRegisters.WebApi.Controllers
 {
@@ -26,7 +26,7 @@ namespace BasicRegisters.WebApi.Controllers
             if (usuario != null && !String.IsNullOrWhiteSpace(usuario.UserID))
             {
                 var usuarioBase = userServices.Find(usuario.UserID);
-                credenciaisValidas = (usuarioBase != null &&
+                credenciaisValidas = (usuarioBase.Id != Guid.Empty &&
                     usuario.UserID == usuarioBase.UserID &&
                     usuario.AccessKey == usuarioBase.AccessKey);
             }

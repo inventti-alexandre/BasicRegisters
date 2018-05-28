@@ -8,24 +8,24 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
     {
         private readonly BasicRegistersContext _context;
 
-
         public UserServices(BasicRegistersContext context)
         {
             _context = context;
         }
-            
+
         public UserDto Find(string userID)
         {
             var user = _context.Users
                 .FirstOrDefault(c => c.UserID == userID);
 
+            if (user == null) return new UserDto { UserID = null, Id = Guid.Empty, AccessKey = null };
+
             return new UserDto { UserID = user.UserID, AccessKey = user.AccessKey };
-            //return new UserDto { UserID = "123", AccessKey = "123" };
         }
+
         public void Dispose()
         {
             GC.SuppressFinalize(this);
         }
-
     }
 }
