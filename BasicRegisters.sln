@@ -13,15 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Domain", "3-Domain", "{9A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9-Templates", "9-Templates", "{9C89362C-0F23-4256-A516-FA088B98D925}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicRegisters.React", "9-Templates\BasicRegisters.React\BasicRegisters.React.csproj", "{60C5A632-9EB1-44E2-8775-3EC6C26F1DA9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.1-WebApi", "0.1-WebApi", "{124AB7B4-2E12-4266-9D05-F05B8102D9C1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicRegisters.Domain", "3-Domain\BasicRegisters.Domain\BasicRegisters.Domain.csproj", "{4DEC0DF1-8DAF-4966-ACC8-E58F30B76D71}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicRegisters.WebApi", "0-Presentations\0.1-WebApi\BasicRegisters.WebApi\BasicRegisters.WebApi.csproj", "{AD647961-07BF-4EE9-8127-3004E83665DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicRegisters.Application", "2-Application\BasicRegisters.Application\BasicRegisters.Application.csproj", "{E92C7A8B-32FB-403A-AC32-02403F35EFCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicRegisters.Application", "2-Application\BasicRegisters.Application\BasicRegisters.Application.csproj", "{E92C7A8B-32FB-403A-AC32-02403F35EFCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{60C5A632-9EB1-44E2-8775-3EC6C26F1DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60C5A632-9EB1-44E2-8775-3EC6C26F1DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60C5A632-9EB1-44E2-8775-3EC6C26F1DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60C5A632-9EB1-44E2-8775-3EC6C26F1DA9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DEC0DF1-8DAF-4966-ACC8-E58F30B76D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DEC0DF1-8DAF-4966-ACC8-E58F30B76D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DEC0DF1-8DAF-4966-ACC8-E58F30B76D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,7 +44,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{60C5A632-9EB1-44E2-8775-3EC6C26F1DA9} = {9C89362C-0F23-4256-A516-FA088B98D925}
 		{124AB7B4-2E12-4266-9D05-F05B8102D9C1} = {42DE1837-84E2-4B16-981D-F730C3FBC047}
 		{4DEC0DF1-8DAF-4966-ACC8-E58F30B76D71} = {9AF5F110-17EB-4505-A7AF-073B823A8D45}
 		{AD647961-07BF-4EE9-8127-3004E83665DE} = {124AB7B4-2E12-4266-9D05-F05B8102D9C1}
