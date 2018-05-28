@@ -1,5 +1,4 @@
-﻿using BasicRegisters.Domain.Domain;
-using EFGetStarted.AspNetCore.NewDb.Models;
+﻿using EFGetStarted.AspNetCore.NewDb.Models;
 using System.Linq;
 
 namespace BasicRegisters.Application.Services.UserServices.Dtos
@@ -8,7 +7,6 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
     {
         private readonly BasicRegistersContext _context;
 
-        //public UserServices()
         public UserServices(BasicRegistersContext context)
         {
             _context = context;

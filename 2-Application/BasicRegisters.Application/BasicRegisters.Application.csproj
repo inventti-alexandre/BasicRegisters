@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\3-Domain\BasicRegisters.Domain\BasicRegisters.Domain.csproj" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\4-Infra\BasicRegisters.Data\BasicRegisters.Data.csproj" />
   </ItemGroup>
 
 </Project>
