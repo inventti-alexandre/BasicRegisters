@@ -11,16 +11,16 @@ namespace BasicRegisters.Domain.Entidades
         public IConta Conta { get; set; }
         public Guid ContaId { get; set; }
         public DateTime DataDeCadastro { get; set; }
-        public DateTime DataDeExclusao { get; set; }
-        public bool Excluido { get; set; }
+        public DateTime? DataDeExclusao { get; set; }
+        public bool? Excluido { get; set; }
 
         [Key]
         public Guid Id { get; set; }
 
         public string Numero { get; set; }
-        public User UsuarioDeCadastro { get; set; }
-        public Guid UsuarioDeCadastroId { get; set; }
-        public User UsuarioDeExlusao { get; set; }
-        public Guid UsuarioDeExlusaoId { get; set; }
+        public Usuario UsuarioDeCadastro { get; set; }
+        public Guid? UsuarioDeCadastroId { get; set; }
+        public Usuario UsuarioDeExlusao { get; set; }
+        public Guid? UsuarioDeExlusaoId { get; set; }
     }
 }

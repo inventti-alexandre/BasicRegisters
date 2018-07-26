@@ -3,8 +3,8 @@ using System;
 
 namespace BasicRegisters.Application.Services.UserServices
 {
-    public interface IUserServices : IDisposable
+    public interface IUsuarioServices : IDisposable
     {
-        UserDto Find(string userID);
+        UsuarioDto Find(string userID);
     }
 }

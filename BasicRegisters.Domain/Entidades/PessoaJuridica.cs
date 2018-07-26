@@ -11,8 +11,8 @@ namespace BasicRegisters.Domain.Entidades
         public bool Ativo { get; set; }
         public string Cnpj { get; set; }
         public DateTime DataDeCadastro { get; set; }
-        public DateTime DataDeExclusao { get; set; }
-        public bool Excluido { get; set; }
+        public DateTime? DataDeExclusao { get; set; }
+        public bool? Excluido { get; set; }
 
         [Key]
         public Guid Id { get; set; }
@@ -21,9 +21,9 @@ namespace BasicRegisters.Domain.Entidades
         public string Nome { get; set; }
         public string NomeFantasia { get; set; }
         public List<Telefone> Telefones { get; set; }
-        public User UsuarioDeCadastro { get; set; }
-        public Guid UsuarioDeCadastroId { get; set; }
-        public User UsuarioDeExlusao { get; set; }
-        public Guid UsuarioDeExlusaoId { get; set; }
+        public Usuario UsuarioDeCadastro { get; set; }
+        public Guid? UsuarioDeCadastroId { get; set; }
+        public Usuario UsuarioDeExlusao { get; set; }
+        public Guid? UsuarioDeExlusaoId { get; set; }
     }
 }

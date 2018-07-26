@@ -1,4 +1,5 @@
-﻿using BasicRegisters.Application.Services.LoginServices.Dtos;
+﻿using AutoMapper;
+using BasicRegisters.Application.Services.LoginServices.Dtos;
 using BasicRegisters.Application.Services.UserServices.Dtos;
 using EFGetStarted.AspNetCore.NewDb.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -41,7 +42,7 @@ namespace BasicRegisters.WebApi
               .Build();
 
             services.AddDbContext<BasicRegistersContext>(x => x.UseSqlServer(configuration.GetConnectionString("Defa‌​ultConnection")));
-            services.AddTransient<UserServices>();
+            services.AddTransient<UsuarioServices>();
 
             var signingConfigurations = new SigningConfigurations();
             services.AddSingleton(signingConfigurations);
@@ -83,7 +84,7 @@ namespace BasicRegisters.WebApi
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser().Build());
             });
-
+            services.AddAutoMapper();
             services.AddMvc();
         }
     }

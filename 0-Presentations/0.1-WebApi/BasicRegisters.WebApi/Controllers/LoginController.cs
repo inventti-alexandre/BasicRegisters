@@ -17,27 +17,27 @@ namespace BasicRegisters.WebApi.Controllers
         [AllowAnonymous]
         [HttpPost]
         public object Post(
-            [FromBody]UserViewModel usuario,
-            [FromServices]UserServices userServices,
+            [FromBody]UsuarioViewModel usuario,
+            [FromServices]UsuarioServices userServices,
             [FromServices]SigningConfigurations signingConfigurations,
             [FromServices]TokenConfigurations tokenConfigurations)
         {
             bool credenciaisValidas = false;
-            if (usuario != null && !String.IsNullOrWhiteSpace(usuario.UserID))
+            if (usuario != null && !String.IsNullOrWhiteSpace(usuario.Login))
             {
-                var usuarioBase = userServices.Find(usuario.UserID);
+                var usuarioBase = userServices.Find(usuario.Login);
                 credenciaisValidas = (usuarioBase.Id != Guid.Empty &&
-                    usuario.UserID == usuarioBase.UserID &&
-                    usuario.AccessKey == usuarioBase.AccessKey);
+                    usuario.Login == usuarioBase.Apelido &&
+                    usuario.Senha == usuarioBase.Senha);
             }
 
             if (credenciaisValidas)
             {
                 ClaimsIdentity identity = new ClaimsIdentity(
-                    new GenericIdentity(usuario.UserID, "Login"),
+                    new GenericIdentity(usuario.Login, "Login"),
                     new[] {
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-                        new Claim(JwtRegisteredClaimNames.UniqueName, usuario.UserID)
+                        new Claim(JwtRegisteredClaimNames.UniqueName, usuario.Login)
                     }
                 );
 

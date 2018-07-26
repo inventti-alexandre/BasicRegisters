@@ -19,7 +19,7 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
         //public DbSet<IPessoaFisica> PessoasFisicas { get; set; }
         //public DbSet<IPessoaFisica> PessoasJuridicas { get; set; }
         //public DbSet<ITelefone> Telefones { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,7 +33,7 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new UsuarioConfig());
             base.OnModelCreating(modelBuilder);
         }
     }
