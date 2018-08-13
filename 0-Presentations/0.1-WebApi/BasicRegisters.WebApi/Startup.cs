@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BasicRegisters.Application.Services.LoginServices;
 using BasicRegisters.Application.Services.LoginServices.Dtos;
 using BasicRegisters.Application.Services.UserServices.Dtos;
 using EFGetStarted.AspNetCore.NewDb.Models;
@@ -43,6 +44,7 @@ namespace BasicRegisters.WebApi
 
             services.AddDbContext<BasicRegistersContext>(x => x.UseSqlServer(configuration.GetConnectionString("Defa‌​ultConnection")));
             services.AddTransient<UsuarioServices>();
+            services.AddTransient<LoginServices>();
 
             var signingConfigurations = new SigningConfigurations();
             services.AddSingleton(signingConfigurations);

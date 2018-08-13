@@ -8,8 +8,8 @@ namespace BasicRegisters.WebApi.Mapper
     {
         public WebApiProfile()
         {
-            CreateMap<UsuarioDto, UsuarioViewModel>();
-            CreateMap<UsuarioViewModel, UsuarioDto>()
+            CreateMap<UsuarioDto, LoginViewModel>();
+            CreateMap<LoginViewModel, UsuarioDto>()
                 .ForMember(x => x.Id, opts => opts.Ignore());
         }
     }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;
 
-namespace BasicRegisters.Application.Services.UserServices.Dtos
+namespace BasicRegisters.Application.Services.LoginServices.Dtos
 {
     public class SigningConfigurations
     {
