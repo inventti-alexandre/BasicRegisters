@@ -1,4 +1,6 @@
-﻿namespace BasicRegisters.Domain.Entidades.Interfaces
+﻿using BasicRegisters.Domain.Entidades.Interfaces;
+
+namespace BasicRegisters.Domain.Entidades.Contas
 {
     public interface IConta : IBaseEntidade
     {

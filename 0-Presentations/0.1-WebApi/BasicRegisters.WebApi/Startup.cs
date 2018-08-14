@@ -25,6 +25,13 @@ namespace BasicRegisters.WebApi
 
         public IConfiguration Configuration { get; }
 
+        public void CarregarServicos(IServiceCollection services, IConfigurationRoot configuration)
+        {
+            services.AddDbContext<BasicRegistersContext>(x => x.UseSqlServer(configuration.GetConnectionString("Defa‌​ultConnection")));
+            services.AddTransient<UsuarioServices>();
+            services.AddTransient<LoginServices>();
+        }
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -42,10 +49,15 @@ namespace BasicRegisters.WebApi
               .AddJsonFile("appsettings.json")
               .Build();
 
-            services.AddDbContext<BasicRegistersContext>(x => x.UseSqlServer(configuration.GetConnectionString("Defa‌​ultConnection")));
-            services.AddTransient<UsuarioServices>();
-            services.AddTransient<LoginServices>();
+            CarregarServicos(services, configuration);
+            ServicosDeLogin(services);
 
+            services.AddAutoMapper();
+            services.AddMvc();
+        }
+
+        public void ServicosDeLogin(IServiceCollection services)
+        {
             var signingConfigurations = new SigningConfigurations();
             services.AddSingleton(signingConfigurations);
 
@@ -86,8 +98,6 @@ namespace BasicRegisters.WebApi
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser().Build());
             });
-            services.AddAutoMapper();
-            services.AddMvc();
         }
     }
 }

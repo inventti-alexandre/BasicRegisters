@@ -1,4 +1,6 @@
-﻿namespace BasicRegisters.Domain.Entidades.Interfaces
+﻿using BasicRegisters.Domain.Entidades.Pessoas;
+
+namespace BasicRegisters.Domain.Entidades.Interfaces
 {
     public interface IPessoaJuridica : IPessoa
     {

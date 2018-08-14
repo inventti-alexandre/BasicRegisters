@@ -1,4 +1,5 @@
 ﻿using BasicRegisters.Domain.Entidades;
+using BasicRegisters.Domain.Entidades.Contas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

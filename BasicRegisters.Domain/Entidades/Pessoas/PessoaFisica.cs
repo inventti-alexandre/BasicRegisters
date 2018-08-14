@@ -1,5 +1,7 @@
 ﻿using BasicRegisters.Domain.Domain;
 using BasicRegisters.Domain.Entidades.Interfaces;
+using BasicRegisters.Domain.Entidades.Pessoas;
+using BasicRegisters.Domain.Telefones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

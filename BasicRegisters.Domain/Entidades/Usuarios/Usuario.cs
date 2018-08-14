@@ -1,19 +1,22 @@
-﻿using BasicRegisters.Domain.Domain;
-using BasicRegisters.Domain.Entidades.Interfaces;
+﻿using BasicRegisters.Domain.Entidades.Contas;
+using BasicRegisters.Domain.Entidades.Usuarios;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BasicRegisters.Domain.Entidades
+namespace BasicRegisters.Domain.Domain
 {
-    public class Conta : IConta
+    public class Usuario : IUsuario
     {
         public string Apelido { get; set; }
         public bool Ativo { get; set; }
+        public Conta Conta { get; set; }
+        public Guid ContaId { get; set; }
         public DateTime DataDeCadastro { get; set; }
         public DateTime? DataDeExclusao { get; set; }
+        public string Email { get; set; }
         public bool? Excluido { get; set; }
         public Guid Id { get; set; }
-        public string Nome { get; set; }
+        public string Senha { get; set; }
 
         [NotMapped]
         public Usuario UsuarioDeCadastro { get; set; }

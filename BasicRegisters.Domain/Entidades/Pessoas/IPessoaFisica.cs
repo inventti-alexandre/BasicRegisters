@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BasicRegisters.Domain.Entidades.Interfaces
+namespace BasicRegisters.Domain.Entidades.Pessoas
 {
     public interface IPessoaFisica : IPessoa
     {

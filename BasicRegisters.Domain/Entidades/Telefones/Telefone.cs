@@ -1,30 +1,27 @@
-﻿using BasicRegisters.Domain.Entidades.Interfaces;
+﻿using BasicRegisters.Domain.Domain;
+using BasicRegisters.Domain.Entidades.Contas;
+using BasicRegisters.Domain.Entidades.Telefones;
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace BasicRegisters.Domain.Domain
+namespace BasicRegisters.Domain.Telefones
 {
-    public class Usuario : IUsuario
+    public class Telefone : ITelefone
     {
-        public string Apelido { get; set; }
         public bool Ativo { get; set; }
+        public IConta Conta { get; set; }
+        public Guid ContaId { get; set; }
         public DateTime DataDeCadastro { get; set; }
         public DateTime? DataDeExclusao { get; set; }
-        public string Email { get; set; }
         public bool? Excluido { get; set; }
+
+        [Key]
         public Guid Id { get; set; }
-        public string Senha { get; set; }
 
-        [NotMapped]
+        public string Numero { get; set; }
         public Usuario UsuarioDeCadastro { get; set; }
-
-        [NotMapped]
         public Guid? UsuarioDeCadastroId { get; set; }
-
-        [NotMapped]
         public Usuario UsuarioDeExlusao { get; set; }
-
-        [NotMapped]
         public Guid? UsuarioDeExlusaoId { get; set; }
     }
 }

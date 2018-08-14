@@ -1,6 +1,8 @@
-﻿using System;
+﻿using BasicRegisters.Domain.Entidades.Contas;
+using BasicRegisters.Domain.Entidades.Interfaces;
+using System;
 
-namespace BasicRegisters.Domain.Entidades.Interfaces
+namespace BasicRegisters.Domain.Entidades.Telefones
 {
     public interface ITelefone : IBaseEntidade
     {

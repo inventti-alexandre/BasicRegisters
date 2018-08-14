@@ -1,6 +1,5 @@
 ﻿using BasicRegisters.Domain.Domain;
-using BasicRegisters.Domain.Entidades;
-using BasicRegisters.Domain.Entidades.Interfaces;
+using BasicRegisters.Domain.Entidades.Contas;
 using BasicRegisters.Domain.EntityConfig;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

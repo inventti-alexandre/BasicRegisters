@@ -1,15 +1,16 @@
 ﻿using BasicRegisters.Domain.Domain;
 using BasicRegisters.Domain.Entidades.Interfaces;
+using BasicRegisters.Domain.Telefones;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BasicRegisters.Domain.Entidades
 {
-    public class Telefone : ITelefone
+    public class PessoaJuridica : IPessoaJuridica
     {
         public bool Ativo { get; set; }
-        public IConta Conta { get; set; }
-        public Guid ContaId { get; set; }
+        public string Cnpj { get; set; }
         public DateTime DataDeCadastro { get; set; }
         public DateTime? DataDeExclusao { get; set; }
         public bool? Excluido { get; set; }
@@ -17,7 +18,10 @@ namespace BasicRegisters.Domain.Entidades
         [Key]
         public Guid Id { get; set; }
 
-        public string Numero { get; set; }
+        public string InscricaoEstadual { get; set; }
+        public string Nome { get; set; }
+        public string NomeFantasia { get; set; }
+        public List<Telefone> Telefones { get; set; }
         public Usuario UsuarioDeCadastro { get; set; }
         public Guid? UsuarioDeCadastroId { get; set; }
         public Usuario UsuarioDeExlusao { get; set; }
