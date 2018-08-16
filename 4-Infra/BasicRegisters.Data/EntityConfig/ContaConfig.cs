@@ -8,7 +8,7 @@ namespace BasicRegisters.Domain.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Conta> builder)
         {
-            builder.ToTable("Conta");
+            builder.ToTable("Contas");
 
             builder.HasKey(c => c.Id);
 
