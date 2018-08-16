@@ -7,6 +7,19 @@ namespace BasicRegisters.Domain.Domain
 {
     public class Usuario : IUsuario
     {
+        public Usuario(bool? administradorDaConta, string apelido, bool ativo, string email, string senha, Conta conta)
+        {
+            SetAdministradorDaConta(administradorDaConta);
+            SetApelido(apelido);
+            SetAtivo(ativo);
+            SetConta(conta);
+            SetEmail(email);
+            SetSenha(senha);
+            SetDataDeCadastro(DateTime.Now);
+            SetId(Guid.NewGuid());
+        }
+
+        public bool? AdministradorDaConta { get; set; }
         public string Apelido { get; set; }
         public bool Ativo { get; set; }
         public Conta Conta { get; set; }
@@ -27,6 +40,12 @@ namespace BasicRegisters.Domain.Domain
         public Usuario UsuarioDeExlusao { get; set; }
 
         public Guid? UsuarioDeExlusaoId { get; set; }
+
+        public Usuario SetAdministradorDaConta(bool? administradorDaConta)
+        {
+            AdministradorDaConta = administradorDaConta;
+            return this;
+        }
 
         public Usuario SetApelido(string apelido)
         {

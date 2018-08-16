@@ -4,6 +4,7 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
 {
     public class UsuarioDto
     {
+        public bool? AdministradorDaConta { get; set; }
         public string Apelido { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataDeCadastro { get; set; }
@@ -15,6 +16,9 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
 
         public Guid UsuarioDeCadastroId { get; set; }
 
-        public Guid UsuarioDeExlusaoId { get; set; }
+        public Guid UsuarioDeExlusaoId
+        {
+            get; set;
+        }
     }
 }

@@ -1,6 +1,13 @@
 ﻿using AutoMapper;
+using BasicRegisters.Application.Services.ContaServices.Dtos;
 using BasicRegisters.Application.Services.GerarDadosIniciais.Dtos;
+using BasicRegisters.Application.Services.UserServices.Dtos;
+using BasicRegisters.Domain.Domain;
+using BasicRegisters.Domain.Entidades.Contas;
+using BasicRegisters.Domain.Entidades.Contas.Builder;
+using BasicRegisters.Domain.Entidades.Usuarios.Builder;
 using EFGetStarted.AspNetCore.NewDb.Models;
+using System;
 
 namespace BasicRegisters.Application.Services.GerarDadosIniciais
 {
@@ -15,12 +22,29 @@ namespace BasicRegisters.Application.Services.GerarDadosIniciais
             _mapper = mapper;
         }
 
-        public DadosIniciaisDto GerarDadosIniciais(DadosIniciaisDto dadosIniciaisDto)
+        public Tuple<ContaDto, UsuarioDto> GerarDadosIniciais(DadosIniciaisDto dadosIniciaisDto)
         {
-            //var conta = new ContaBuilder();
-            //var usuario = new UsuarioBuilder();
+            var conta = new ContaBuilder()
+                .WithApelido(dadosIniciaisDto.ApelidoDaConta)
+                .WithAtivo(true)
+                .WithNome(dadosIniciaisDto.NomeDaConta)
+                .Build();
 
-            return new DadosIniciaisDto();
+            var usuario = new UsuarioBuilder()
+                .WithAdministradorDaConta(true)
+                .WithApelido(dadosIniciaisDto.ApelidoParaUsuarioAdministrador)
+                .WithAtivo(true)
+                .WithEmail(dadosIniciaisDto.EmailParaUsuarioAdministrador)
+                .WithConta(conta)
+                .Build();
+
+            _context.SaveChanges();
+
+            var contaDto = _mapper.Map<Conta, ContaDto>(conta);
+
+            var usuarioDto = _mapper.Map<Usuario, UsuarioDto>(usuario);
+
+            return new Tuple<ContaDto, UsuarioDto>(contaDto, usuarioDto);
         }
     }
 }
