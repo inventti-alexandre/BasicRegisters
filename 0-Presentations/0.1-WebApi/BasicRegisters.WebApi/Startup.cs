@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BasicRegisters.Application.Services.GerarDadosIniciais;
 using BasicRegisters.Application.Services.LoginServices;
 using BasicRegisters.Application.Services.LoginServices.Dtos;
 using BasicRegisters.Application.Services.UserServices.Dtos;
@@ -30,6 +31,7 @@ namespace BasicRegisters.WebApi
             services.AddDbContext<BasicRegistersContext>(x => x.UseSqlServer(configuration.GetConnectionString("Defa‌​ultConnection")));
             services.AddTransient<UsuarioServices>();
             services.AddTransient<LoginServices>();
+            services.AddTransient<DadosIniciaisServices>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -16,7 +16,7 @@ namespace BasicRegisters.Domain.Entidades.Contas.Builder
 
         public Conta Build()
         {
-            return new Conta(Apelido, Nome, UsuarioDeCadastro);
+            return new Conta(Apelido, Nome);
         }
 
         public ContaBuilder WithApelido(string apelido)

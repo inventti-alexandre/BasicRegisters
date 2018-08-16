@@ -6,13 +6,13 @@ namespace BasicRegisters.Domain.Entidades.Contas
 {
     public class Conta : IConta
     {
-        public Conta(string apelido, string nome, Usuario usuarioDeCadastro)
+        public Conta(string apelido, string nome)
         {
             SetApelido(apelido);
             SetNome(nome);
             DataDeCadastro = DateTime.Now;
-            SetId(Guid.Empty);
-            SetUsuarioDeCadastro(usuarioDeCadastro);
+            SetAtivo(true);
+            SetId(Guid.NewGuid());
         }
 
         public Conta()
@@ -32,12 +32,6 @@ namespace BasicRegisters.Domain.Entidades.Contas
         public Guid Id { get; private set; }
 
         public string Nome { get; private set; }
-
-        [NotMapped]
-        public Usuario UsuarioDeCadastro { get; private set; }
-
-        [NotMapped]
-        public Guid? UsuarioDeCadastroId { get; private set; }
 
         [NotMapped]
         public Usuario UsuarioDeExlusao { get; private set; }
@@ -83,13 +77,6 @@ namespace BasicRegisters.Domain.Entidades.Contas
         public Conta SetNome(string nome)
         {
             Nome = nome;
-            return this;
-        }
-
-        public Conta SetUsuarioDeCadastro(Usuario usuarioDeCadastro)
-        {
-            UsuarioDeCadastro = usuarioDeCadastro;
-            UsuarioDeCadastroId = usuarioDeCadastro.Id;
             return this;
         }
 

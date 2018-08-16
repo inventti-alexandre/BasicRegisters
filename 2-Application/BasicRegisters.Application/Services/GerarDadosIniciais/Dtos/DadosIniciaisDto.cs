@@ -9,7 +9,5 @@ namespace BasicRegisters.Application.Services.GerarDadosIniciais.Dtos
         public string EmailParaUsuarioAdministrador { get; set; }
         public string NomeDaConta { get; set; }
         public string SenhaParaUsuarioAdministrador { get; set; }
-
-        public Guid UsuarioDeCadastroId { get; set; }
     }
 }

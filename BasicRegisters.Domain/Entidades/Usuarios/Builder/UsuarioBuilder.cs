@@ -74,5 +74,11 @@ namespace BasicRegisters.Domain.Entidades.Usuarios.Builder
             Excluido = excluido;
             return this;
         }
+
+        public UsuarioBuilder WithSenha(string senha)
+        {
+            Senha = senha;
+            return this;
+        }
     }
 }
