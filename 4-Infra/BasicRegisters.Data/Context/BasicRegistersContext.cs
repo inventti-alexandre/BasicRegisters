@@ -1,9 +1,11 @@
 ﻿using BasicRegisters.Domain.Domain;
 using BasicRegisters.Domain.Entidades.Contas;
-using BasicRegisters.Domain.EntityConfig;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace EFGetStarted.AspNetCore.NewDb.Models
 {
@@ -32,8 +34,29 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UsuarioConfig());
-            base.OnModelCreating(modelBuilder);
+            RegitrarTodosOsConfigsViaReflexao(modelBuilder);
+        }
+
+        private void RegitrarTodosOsConfigsViaReflexao(ModelBuilder modelBuilder)
+        {
+            var type = typeof(IEntityTypeConfiguration<>);
+            var entitiesConfigType = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(x => x.IsClass && !x.IsAbstract && !x.IsGenericType && x.IsTypeDefinition && x.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == type))
+                .ToList();
+
+            var applyConfigurationMethod = modelBuilder.GetType()
+                .GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                .FirstOrDefault(x => x.GetParameters().Any(z => z.ParameterType.IsGenericType && z.ParameterType.GetGenericTypeDefinition() == typeof(IEntityTypeConfiguration<>)));
+            foreach (var configType in entitiesConfigType)
+            {
+                var entityConfig = Activator.CreateInstance(configType, null);
+                var interfaceConfig = configType.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == type);
+
+                applyConfigurationMethod?
+                    .MakeGenericMethod(interfaceConfig?.GetGenericArguments()[0])
+                    .Invoke(modelBuilder, new[] { entityConfig });
+            }
         }
     }
 }

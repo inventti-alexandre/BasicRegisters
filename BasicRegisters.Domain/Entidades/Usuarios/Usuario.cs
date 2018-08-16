@@ -19,10 +19,17 @@ namespace BasicRegisters.Domain.Domain
             SetId(Guid.NewGuid());
         }
 
+        public Usuario()
+        {
+        }
+
         public bool? AdministradorDaConta { get; set; }
         public string Apelido { get; set; }
         public bool Ativo { get; set; }
+
+        [NotMapped]
         public Conta Conta { get; set; }
+
         public Guid ContaId { get; set; }
         public DateTime DataDeCadastro { get; set; }
         public DateTime? DataDeExclusao { get; set; }

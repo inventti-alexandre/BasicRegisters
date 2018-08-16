@@ -1,5 +1,4 @@
-﻿using BasicRegisters.Domain.Entidades;
-using BasicRegisters.Domain.Entidades.Contas;
+﻿using BasicRegisters.Domain.Entidades.Contas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,11 +14,13 @@ namespace BasicRegisters.Domain.EntityConfig
 
             builder
                 .Property(c => c.Apelido)
-                .HasColumnType("varchar(20)");
+                .HasColumnType("varchar(20)")
+                .IsRequired();
 
             builder
                 .Property(c => c.Nome)
-                .HasColumnType("varchar(80)");
+                .HasColumnType("varchar(80)")
+                .IsRequired();
         }
     }
 }

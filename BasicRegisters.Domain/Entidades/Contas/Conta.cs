@@ -15,6 +15,10 @@ namespace BasicRegisters.Domain.Entidades.Contas
             SetUsuarioDeCadastro(usuarioDeCadastro);
         }
 
+        public Conta()
+        {
+        }
+
         public string Apelido { get; private set; }
 
         public bool Ativo { get; private set; }
