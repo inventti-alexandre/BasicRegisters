@@ -27,5 +27,40 @@ namespace BasicRegisters.Domain.Entidades
         public Guid? UsuarioDeCadastroId { get; set; }
         public Usuario UsuarioDeExlusao { get; set; }
         public Guid? UsuarioDeExlusaoId { get; set; }
+
+        public Pessoa SetAtivo(bool ativo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Pessoa SetDataDeCadastro(DateTime dataDeCadastro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Pessoa SetDataDeExclusao(DateTime? dataDeExclusao)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Pessoa SetExcluido(bool? excluido)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Pessoa SetId(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Pessoa SetUsuarioDeCadastro(Usuario usuarioDeCadastro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Pessoa SetUsuarioDeExlusao(Usuario usuarioDeExlusao)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

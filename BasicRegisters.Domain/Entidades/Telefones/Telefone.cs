@@ -23,5 +23,40 @@ namespace BasicRegisters.Domain.Telefones
         public Guid? UsuarioDeCadastroId { get; set; }
         public Usuario UsuarioDeExlusao { get; set; }
         public Guid? UsuarioDeExlusaoId { get; set; }
+
+        public Telefone SetAtivo(bool ativo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Telefone SetDataDeCadastro(DateTime dataDeCadastro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Telefone SetDataDeExclusao(DateTime? dataDeExclusao)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Telefone SetExcluido(bool? excluido)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Telefone SetId(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Telefone SetUsuarioDeCadastro(Usuario usuarioDeCadastro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Telefone SetUsuarioDeExlusao(Usuario usuarioDeExlusao)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

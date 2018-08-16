@@ -2,9 +2,13 @@
 
 namespace BasicRegisters.Domain.Entidades.Contas
 {
-    public interface IConta : IBaseEntidade
+    public interface IConta : IBaseEntidade<Conta>
     {
-        string Apelido { get; set; }
-        string Nome { get; set; }
+        string Apelido { get; }
+        string Nome { get; }
+
+        Conta SetApelido(string apelido);
+
+        Conta SetNome(string nome);
     }
 }

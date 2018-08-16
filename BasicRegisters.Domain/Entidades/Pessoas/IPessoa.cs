@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BasicRegisters.Domain.Entidades.Pessoas
 {
-    public interface IPessoa : IBaseEntidade
+    public interface IPessoa : IBaseEntidade<Pessoa>
     {
         string Nome { get; set; }
         List<Telefone> Telefones { get; set; }
