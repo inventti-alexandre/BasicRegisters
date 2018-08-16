@@ -19,10 +19,6 @@ namespace BasicRegisters.Application.Services.ContaServices.Dtos
 
         public string Nome { get; set; }
 
-        public UsuarioDto UsuarioDeCadastro { get; set; }
-
-        public Guid? UsuarioDeCadastroId { get; set; }
-
         public UsuarioDto UsuarioDeExlusao { get; set; }
 
         public Guid? UsuarioDeExlusaoId { get; set; }

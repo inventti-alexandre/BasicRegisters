@@ -36,6 +36,7 @@ namespace BasicRegisters.Domain.Entidades.Contas
         [NotMapped]
         public Usuario UsuarioDeCadastro { get; private set; }
 
+        [NotMapped]
         public Guid? UsuarioDeCadastroId { get; private set; }
 
         [NotMapped]
