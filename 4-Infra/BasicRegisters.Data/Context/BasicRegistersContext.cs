@@ -35,6 +35,15 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             RegitrarTodosOsConfigsViaReflexao(modelBuilder);
+            RegistrarIndices(modelBuilder);
+        }
+
+        private void RegistrarIndices(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<Usuario>()
+                .HasIndex(c => c.Email)
+                .IsUnique();
         }
 
         private void RegitrarTodosOsConfigsViaReflexao(ModelBuilder modelBuilder)
