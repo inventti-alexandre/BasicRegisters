@@ -7,6 +7,7 @@ using BasicRegisters.Domain.Entidades.Contas;
 using BasicRegisters.Domain.Entidades.Contas.Builder;
 using BasicRegisters.Domain.Entidades.Usuarios.Builder;
 using EFGetStarted.AspNetCore.NewDb.Models;
+using FluentValidation;
 using NETCore.Encrypt;
 using System;
 
@@ -15,12 +16,14 @@ namespace BasicRegisters.Application.Services.GerarDadosIniciais
     public class DadosIniciaisServices : IDadosIniciaisServices
     {
         private readonly BasicRegistersContext _context;
+        private readonly IValidator<DadosIniciaisDto> _dadosIniciaisValidator;
         private readonly IMapper _mapper;
 
-        public DadosIniciaisServices(BasicRegistersContext context, IMapper mapper)
+        public DadosIniciaisServices(BasicRegistersContext context, IMapper mapper, IValidator<DadosIniciaisDto> dadosIniciaisValidator)
         {
             _context = context;
             _mapper = mapper;
+            _dadosIniciaisValidator = dadosIniciaisValidator;
         }
 
         public Tuple<ContaDto, UsuarioDto> GerarDadosIniciais(DadosIniciaisDto dadosIniciaisDto)

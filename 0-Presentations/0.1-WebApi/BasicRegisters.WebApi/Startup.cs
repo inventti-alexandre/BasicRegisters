@@ -4,6 +4,7 @@ using BasicRegisters.Application.Services.LoginServices;
 using BasicRegisters.Application.Services.LoginServices.Dtos;
 using BasicRegisters.Application.Services.UserServices.Dtos;
 using EFGetStarted.AspNetCore.NewDb.Models;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -54,8 +55,10 @@ namespace BasicRegisters.WebApi
             CarregarServicos(services, configuration);
             ServicosDeLogin(services);
 
-            services.AddAutoMapper();
-            services.AddMvc();
+            services
+                .AddAutoMapper()
+                .AddMvc()
+                .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         public void ServicosDeLogin(IServiceCollection services)
