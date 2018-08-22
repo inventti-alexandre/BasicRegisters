@@ -7,24 +7,32 @@ using BasicRegisters.Domain.Entidades.Contas;
 using BasicRegisters.Domain.Entidades.Contas.Builder;
 using BasicRegisters.Domain.Entidades.Usuarios.Builder;
 using EFGetStarted.AspNetCore.NewDb.Models;
+using FluentValidation;
+using FluentValidation.Results;
 using NETCore.Encrypt;
-using System;
 
 namespace BasicRegisters.Application.Services.GerarDadosIniciais
 {
     public class DadosIniciaisServices : IDadosIniciaisServices
     {
         private readonly BasicRegistersContext _context;
+        private readonly IValidator<DadosIniciaisDto> _dadosIniciaisValidator;
         private readonly IMapper _mapper;
 
-        public DadosIniciaisServices(BasicRegistersContext context, IMapper mapper)
+        public DadosIniciaisServices(BasicRegistersContext context, IMapper mapper, IValidator<DadosIniciaisDto> dadosIniciaisValidator)
         {
             _context = context;
             _mapper = mapper;
+            _dadosIniciaisValidator = dadosIniciaisValidator;
         }
 
-        public Tuple<ContaDto, UsuarioDto> GerarDadosIniciais(DadosIniciaisDto dadosIniciaisDto)
+        public GerarDadosIniciaisDto GerarDadosIniciais(DadosIniciaisDto dadosIniciaisDto)
         {
+            var validationResult = _dadosIniciaisValidator.Validate(dadosIniciaisDto);
+            var gerarDadosIniciaisDto = new GerarDadosIniciaisDto();
+
+            if (!validationResult.IsValid) return RegistrarErros(gerarDadosIniciaisDto, validationResult);
+
             var conta = new ContaBuilder()
                 .WithApelido(dadosIniciaisDto.ApelidoDaConta)
                 .WithAtivo(true)
@@ -44,10 +52,18 @@ namespace BasicRegisters.Application.Services.GerarDadosIniciais
             _context.Usuarios.Add(usuario);
             _context.SaveChanges();
 
-            var contaDto = _mapper.Map<Conta, ContaDto>(conta);
-            var usuarioDto = _mapper.Map<Usuario, UsuarioDto>(usuario);
+            gerarDadosIniciaisDto.ContaDto = _mapper.Map<Conta, ContaDto>(conta);
+            gerarDadosIniciaisDto.UsuarioDto = _mapper.Map<Usuario, UsuarioDto>(usuario);
 
-            return new Tuple<ContaDto, UsuarioDto>(contaDto, usuarioDto);
+            gerarDadosIniciaisDto.IsValid = true;
+            return gerarDadosIniciaisDto;
+        }
+
+        public GerarDadosIniciaisDto RegistrarErros(GerarDadosIniciaisDto gerarDadosIniciaisDto, ValidationResult validationResult)
+        {
+            gerarDadosIniciaisDto.Errors = validationResult.Errors;
+            gerarDadosIniciaisDto.IsValid = validationResult.IsValid;
+            return gerarDadosIniciaisDto;
         }
     }
 }

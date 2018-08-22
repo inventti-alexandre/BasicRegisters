@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BasicRegisters.Application.Services.GerarDadosIniciais.Dtos
+﻿namespace BasicRegisters.Application.Services.GerarDadosIniciais.Dtos
 {
     public class DadosIniciaisDto
     {

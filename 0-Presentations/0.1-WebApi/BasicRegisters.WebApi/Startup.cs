@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using BasicRegisters.Application.Services.GerarDadosIniciais;
+using BasicRegisters.Application.Services.GerarDadosIniciais.Dtos;
+using BasicRegisters.Application.Services.GerarDadosIniciais.Validation;
 using BasicRegisters.Application.Services.LoginServices;
 using BasicRegisters.Application.Services.LoginServices.Dtos;
 using BasicRegisters.Application.Services.UserServices.Dtos;
 using EFGetStarted.AspNetCore.NewDb.Models;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -29,9 +33,10 @@ namespace BasicRegisters.WebApi
         public void CarregarServicos(IServiceCollection services, IConfigurationRoot configuration)
         {
             services.AddDbContext<BasicRegistersContext>(x => x.UseSqlServer(configuration.GetConnectionString("Defa‌​ultConnection")));
-            services.AddTransient<UsuarioServices>();
-            services.AddTransient<LoginServices>();
-            services.AddTransient<DadosIniciaisServices>();
+            services.AddScoped<UsuarioServices>();
+            services.AddScoped<LoginServices>();
+            services.AddScoped<DadosIniciaisServices>();
+            services.AddScoped<IValidator<DadosIniciaisDto>, DadosIniciaisValidation>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -54,8 +59,10 @@ namespace BasicRegisters.WebApi
             CarregarServicos(services, configuration);
             ServicosDeLogin(services);
 
-            services.AddAutoMapper();
-            services.AddMvc();
+            services
+                .AddAutoMapper()
+                .AddMvc()
+                .AddFluentValidation();
         }
 
         public void ServicosDeLogin(IServiceCollection services)
