@@ -55,6 +55,7 @@ namespace BasicRegisters.Application.Services.GerarDadosIniciais
             gerarDadosIniciaisDto.ContaDto = _mapper.Map<Conta, ContaDto>(conta);
             gerarDadosIniciaisDto.UsuarioDto = _mapper.Map<Usuario, UsuarioDto>(usuario);
 
+            gerarDadosIniciaisDto.IsValid = true;
             return gerarDadosIniciaisDto;
         }
 

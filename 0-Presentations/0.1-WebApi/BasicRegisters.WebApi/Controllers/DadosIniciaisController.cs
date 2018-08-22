@@ -18,7 +18,10 @@ namespace BasicRegisters.WebApi.Controllers
             [FromServices]DadosIniciaisServices _dadosIniciaisServices,
             [FromServices]IMapper _mapper)
         {
-            return _dadosIniciaisServices.GerarDadosIniciais(_mapper.Map<DadosIniciaisViewModel, DadosIniciaisDto>(dadosIniciaisViewModel));
+            var gerarDadosIniciaisDto = _dadosIniciaisServices.GerarDadosIniciais(_mapper.Map<DadosIniciaisViewModel, DadosIniciaisDto>(dadosIniciaisViewModel));
+
+            return new { gerarDadosIniciaisDto.Errors, gerarDadosIniciaisDto.IsValid };
+
         }
     }
 }
