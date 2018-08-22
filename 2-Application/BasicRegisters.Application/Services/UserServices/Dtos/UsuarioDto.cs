@@ -14,9 +14,9 @@ namespace BasicRegisters.Application.Services.UserServices.Dtos
         public Guid Id { get; set; }
         public string Senha { get; set; }
 
-        public Guid UsuarioDeCadastroId { get; set; }
+        public Guid? UsuarioDeCadastroId { get; set; }
 
-        public Guid UsuarioDeExlusaoId
+        public Guid? UsuarioDeExlusaoId
         {
             get; set;
         }

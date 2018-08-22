@@ -7,6 +7,6 @@ namespace BasicRegisters.Application.Services.GerarDadosIniciais
 {
     public interface IDadosIniciaisServices
     {
-        Tuple<ContaDto, UsuarioDto> GerarDadosIniciais(DadosIniciaisDto dadosIniciaisDto);
+        GerarDadosIniciaisDto GerarDadosIniciais(DadosIniciaisDto dadosIniciaisDto);
     }
 }
