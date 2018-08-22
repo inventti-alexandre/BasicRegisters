@@ -8,6 +8,7 @@ using BasicRegisters.Domain.Entidades.Contas.Builder;
 using BasicRegisters.Domain.Entidades.Usuarios.Builder;
 using EFGetStarted.AspNetCore.NewDb.Models;
 using FluentValidation;
+using FluentValidation.Results;
 using NETCore.Encrypt;
 
 namespace BasicRegisters.Application.Services.GerarDadosIniciais
@@ -29,12 +30,8 @@ namespace BasicRegisters.Application.Services.GerarDadosIniciais
         {
             var validationResult = _dadosIniciaisValidator.Validate(dadosIniciaisDto);
             var gerarDadosIniciaisDto = new GerarDadosIniciaisDto();
-            if (!validationResult.IsValid)
-            {
-                gerarDadosIniciaisDto.Errors = validationResult.Errors;
-                gerarDadosIniciaisDto.IsValid = validationResult.IsValid;
-                return gerarDadosIniciaisDto;
-            }
+
+            if (!validationResult.IsValid) return RegistrarErros(gerarDadosIniciaisDto, validationResult);
 
             var conta = new ContaBuilder()
                 .WithApelido(dadosIniciaisDto.ApelidoDaConta)
@@ -58,6 +55,13 @@ namespace BasicRegisters.Application.Services.GerarDadosIniciais
             gerarDadosIniciaisDto.ContaDto = _mapper.Map<Conta, ContaDto>(conta);
             gerarDadosIniciaisDto.UsuarioDto = _mapper.Map<Usuario, UsuarioDto>(usuario);
 
+            return gerarDadosIniciaisDto;
+        }
+
+        public GerarDadosIniciaisDto RegistrarErros(GerarDadosIniciaisDto gerarDadosIniciaisDto, ValidationResult validationResult)
+        {
+            gerarDadosIniciaisDto.Errors = validationResult.Errors;
+            gerarDadosIniciaisDto.IsValid = validationResult.IsValid;
             return gerarDadosIniciaisDto;
         }
     }

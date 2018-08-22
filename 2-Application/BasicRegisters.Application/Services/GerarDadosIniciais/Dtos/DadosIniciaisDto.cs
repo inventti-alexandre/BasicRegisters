@@ -1,8 +1,4 @@
-﻿using BasicRegisters.Application.Dtos_Genericos;
-using FluentValidation.Results;
-using System.Collections.Generic;
-
-namespace BasicRegisters.Application.Services.GerarDadosIniciais.Dtos
+﻿namespace BasicRegisters.Application.Services.GerarDadosIniciais.Dtos
 {
     public class DadosIniciaisDto
     {
