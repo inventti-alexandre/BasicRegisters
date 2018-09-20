@@ -1,0 +1,60 @@
+﻿@model BasicRegisters.Admin.Models.Conta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Conta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApelidoDaConta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApelidoDaConta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ativa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ativa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CNPJ)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CNPJ)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CPF)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CPF)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailParaUsuarioAdministrador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmailParaUsuarioAdministrador)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeDaConta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NomeDaConta)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
