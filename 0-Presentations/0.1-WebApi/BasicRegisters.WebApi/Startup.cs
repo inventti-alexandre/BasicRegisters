@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using BasicRegisters.Application.Services.GerarDadosIniciais;
+﻿using BasicRegisters.Application.Services.GerarDadosIniciais;
 using BasicRegisters.Application.Services.GerarDadosIniciais.Dtos;
 using BasicRegisters.Application.Services.GerarDadosIniciais.Validation;
 using BasicRegisters.Application.Services.LoginServices;
 using BasicRegisters.Application.Services.LoginServices.Dtos;
 using BasicRegisters.Application.Services.UserServices.Dtos;
+using AutoMapper;
 using EFGetStarted.AspNetCore.NewDb.Models;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -32,7 +32,8 @@ namespace BasicRegisters.WebApi
 
         public void CarregarServicos(IServiceCollection services, IConfigurationRoot configuration)
         {
-            services.AddDbContext<BasicRegistersContext>(x => x.UseSqlServer(configuration.GetConnectionString("Defa‌​ultConnection")));
+            services.AddDbContext<BasicRegistersContext>(x => 
+                x.UseNpgsql(Configuration.GetConnectionString("Defa‌​ultConnection")));
             services.AddScoped<UsuarioServices>();
             services.AddScoped<LoginServices>();
             services.AddScoped<DadosIniciaisServices>();

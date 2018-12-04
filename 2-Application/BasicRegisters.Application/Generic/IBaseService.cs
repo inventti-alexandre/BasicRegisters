@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BasicRegisters.Application.Generic
 {
@@ -12,6 +13,8 @@ namespace BasicRegisters.Application.Generic
 
         T RegitrarErros();
 
-        T Save(T dto);
+        List<T> GetAll();
+
+        T Add(T dto);
     }
 }

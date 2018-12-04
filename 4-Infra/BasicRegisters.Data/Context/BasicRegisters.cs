@@ -1,5 +1,8 @@
 ﻿using BasicRegisters.Domain.Domain;
+using BasicRegisters.Domain.Entidades;
 using BasicRegisters.Domain.Entidades.Contas;
+using BasicRegisters.Domain.Entidades.Pessoas;
+using BasicRegisters.Domain.Telefones;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -16,10 +19,10 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
         { }
 
         public DbSet<Conta> Contas { get; set; }
-
-        //public DbSet<IPessoaFisica> PessoasFisicas { get; set; }
-        //public DbSet<IPessoaFisica> PessoasJuridicas { get; set; }
-        //public DbSet<ITelefone> Telefones { get; set; }
+        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<PessoaFisica> PessoasFisicas { get; set; }
+        public DbSet<PessoaJuridica> PessoasJuridicas { get; set; }
+        public DbSet<Telefone> Telefones { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,7 +32,7 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            optionsBuilder.UseSqlServer(config.GetConnectionString("Defa‌​ultConnection"));
+            optionsBuilder.UseNpgsql(config.GetConnectionString("Defa‌​ultConnection"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

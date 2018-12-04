@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\4-Infra\BasicRegisters.Data\BasicRegisters.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\PessoaServices\Validation\" />
+  </ItemGroup>
+
 </Project>

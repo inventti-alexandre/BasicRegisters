@@ -1,6 +1,8 @@
-﻿namespace BasicRegisters.Application.Services.GerarDadosIniciais.Dtos
+﻿using BasicRegisters.Application.Dtos_Genericos;
+
+namespace BasicRegisters.Application.Services.GerarDadosIniciais.Dtos
 {
-    public class DadosIniciaisDto
+    public class DadosIniciaisDto: BaseDto
     {
         public string ApelidoDaConta { get; set; }
         public string ApelidoParaUsuarioAdministrador { get; set; }

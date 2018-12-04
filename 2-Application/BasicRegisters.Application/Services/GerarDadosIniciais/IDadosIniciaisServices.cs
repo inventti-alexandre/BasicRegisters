@@ -5,8 +5,7 @@ namespace BasicRegisters.Application.Services.GerarDadosIniciais
 {
     public interface IDadosIniciaisServices
     {
-        GerarDadosIniciaisDto GerarDadosIniciais(DadosIniciaisDto dadosIniciaisDto);
+        DadosIniciaisDto GerarDadosIniciais(DadosIniciaisDto dadosIniciaisDto);
 
-        GerarDadosIniciaisDto RegistrarErros(GerarDadosIniciaisDto gerarDadosIniciaisDto, ValidationResult validationResult);
     }
 }

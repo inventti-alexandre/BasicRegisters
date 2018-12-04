@@ -1,42 +1,34 @@
 ﻿using BasicRegisters.Domain.Domain;
+using BasicRegisters.Domain.Entidades.Base;
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace BasicRegisters.Domain.Entidades.Contas
 {
-    public class Conta : IConta
+    public class Conta : AbstractBaseEntity, IConta
     {
-        public Conta(string apelido, string nome)
+        public Conta(Guid id, string apelido, string nome, bool ativo, DateTime dataDeCadastro, DateTime? dataDeExclusao, bool? excluido)
         {
+            SetId(id);
             SetApelido(apelido);
             SetNome(nome);
-            DataDeCadastro = DateTime.Now;
             SetAtivo(true);
-            SetId(Guid.NewGuid());
+            SetDataDeCadastro(dataDeCadastro);
+            SetDataDeExclusao(dataDeExclusao);
+            SetExcluido(excluido);
         }
 
         public Conta()
         {
         }
 
+        [MaxLength(20)]
         public string Apelido { get; private set; }
 
-        public bool Ativo { get; private set; }
+        public virtual Usuario Usuario { get; private set; }
 
-        public DateTime DataDeCadastro { get; private set; }
-
-        public DateTime? DataDeExclusao { get; private set; }
-
-        public bool? Excluido { get; private set; }
-
-        public Guid Id { get; private set; }
-
+        [MaxLength(80)]
         public string Nome { get; private set; }
-
-        [NotMapped]
-        public Usuario UsuarioDeExlusao { get; private set; }
-
-        public Guid? UsuarioDeExlusaoId { get; private set; }
 
         public Conta SetApelido(string apelido)
         {
@@ -44,46 +36,9 @@ namespace BasicRegisters.Domain.Entidades.Contas
             return this;
         }
 
-        public Conta SetAtivo(bool ativo)
-        {
-            Ativo = ativo;
-            return this;
-        }
-
-        public Conta SetDataDeCadastro(DateTime dataDeCadastro)
-        {
-            DataDeCadastro = dataDeCadastro;
-            return this;
-        }
-
-        public Conta SetDataDeExclusao(DateTime? dataDeExclusao)
-        {
-            DataDeExclusao = dataDeExclusao;
-            return this;
-        }
-
-        public Conta SetExcluido(bool? excluido)
-        {
-            Excluido = excluido;
-            return this;
-        }
-
-        public Conta SetId(Guid id)
-        {
-            Id = id;
-            return this;
-        }
-
         public Conta SetNome(string nome)
         {
             Nome = nome;
-            return this;
-        }
-
-        public Conta SetUsuarioDeExlusao(Usuario usuarioDeExlusao)
-        {
-            UsuarioDeExlusao = UsuarioDeExlusao;
-            UsuarioDeExlusaoId = UsuarioDeExlusao.Id;
             return this;
         }
     }

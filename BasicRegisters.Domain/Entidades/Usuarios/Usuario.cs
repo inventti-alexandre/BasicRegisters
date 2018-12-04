@@ -1,126 +1,78 @@
-﻿using BasicRegisters.Domain.Entidades.Contas;
+﻿using BasicRegisters.Domain.Entidades.Base;
+using BasicRegisters.Domain.Entidades.Contas;
 using BasicRegisters.Domain.Entidades.Usuarios;
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace BasicRegisters.Domain.Domain
 {
-    public class Usuario : IUsuario
+    public class Usuario : AbstractBaseEntity, IUsuario
     {
-        public Usuario(bool? administradorDaConta, string apelido, bool ativo, string email, string senha, Conta conta)
+        public Usuario(Guid id,
+            bool? administradorDaConta,
+            string apelido,
+            string email,
+            string senha,
+            Conta conta,
+            bool ativo,
+            DateTime dataDeCadastro,
+            DateTime? dataDeExclusao,
+            bool? excluido)
         {
+            SetId(id);
             SetAdministradorDaConta(administradorDaConta);
             SetApelido(apelido);
-            SetAtivo(ativo);
-            SetConta(conta);
             SetEmail(email);
             SetSenha(senha);
-            SetDataDeCadastro(DateTime.Now);
-            SetId(Guid.NewGuid());
+            SetConta(conta);
+            SetAtivo(ativo);
+            SetDataDeCadastro(dataDeCadastro);
+            SetDataDeExclusao(dataDeExclusao);
+            SetExcluido(excluido);
         }
 
         public Usuario()
         {
         }
 
-        public bool? AdministradorDaConta { get; set; }
-        public string Apelido { get; set; }
-        public bool Ativo { get; set; }
+        public bool? AdministradorDaConta { get; private set; }
 
-        [NotMapped]
-        public Conta Conta { get; set; }
+        [MaxLength(80)]
+        public string Apelido { get; private set; }
 
-        public Guid ContaId { get; set; }
-        public DateTime DataDeCadastro { get; set; }
-        public DateTime? DataDeExclusao { get; set; }
-        public string Email { get; set; }
-        public bool? Excluido { get; set; }
-        public Guid Id { get; set; }
-        public string Senha { get; set; }
+        public virtual Conta Conta { get; private set; }
 
-        [NotMapped]
-        public Usuario UsuarioDeCadastro { get; set; }
+        public Guid ContaId { get; private set; }
 
-        public Guid? UsuarioDeCadastroId { get; set; }
+        [MaxLength(120)]
+        public string Email { get; private set; }
 
-        [NotMapped]
-        public Usuario UsuarioDeExlusao { get; set; }
+        public string Senha { get; private set; }
 
-        public Guid? UsuarioDeExlusaoId { get; set; }
-
-        public Usuario SetAdministradorDaConta(bool? administradorDaConta)
+        public void SetAdministradorDaConta(bool? administradorDaConta)
         {
             AdministradorDaConta = administradorDaConta;
-            return this;
         }
 
-        public Usuario SetApelido(string apelido)
+        public void SetApelido(string apelido)
         {
             Apelido = apelido;
-            return this;
         }
 
-        public Usuario SetAtivo(bool ativo)
-        {
-            Ativo = ativo;
-            return this;
-        }
-
-        public Usuario SetConta(Conta conta)
+        public void SetConta(Conta conta)
         {
             Conta = conta;
             ContaId = conta.Id;
-            return this;
         }
 
-        public Usuario SetDataDeCadastro(DateTime dataDeCadastro)
-        {
-            DataDeCadastro = dataDeCadastro;
-            return this;
-        }
-
-        public Usuario SetDataDeExclusao(DateTime? dataDeExclusao)
-        {
-            DataDeExclusao = DataDeExclusao;
-            return this;
-        }
-
-        public Usuario SetEmail(string email)
+        public void SetEmail(string email)
         {
             Email = email;
-            return this;
         }
 
-        public Usuario SetExcluido(bool? excluido)
-        {
-            Excluido = excluido;
-            return this;
-        }
-
-        public Usuario SetId(Guid id)
-        {
-            Id = id;
-            return this;
-        }
-
-        public Usuario SetSenha(string senha)
+        public void SetSenha(string senha)
         {
             Senha = senha;
-            return this;
-        }
-
-        public Usuario SetUsuarioDeCadastro(Usuario usuarioDeCadastro)
-        {
-            UsuarioDeCadastro = UsuarioDeCadastro;
-            UsuarioDeCadastroId = UsuarioDeCadastro.Id;
-            return this;
-        }
-
-        public Usuario SetUsuarioDeExlusao(Usuario usuarioDeExlusao)
-        {
-            UsuarioDeExlusao = UsuarioDeExlusao;
-            UsuarioDeExlusaoId = UsuarioDeCadastro.Id;
-            return this;
         }
     }
 }

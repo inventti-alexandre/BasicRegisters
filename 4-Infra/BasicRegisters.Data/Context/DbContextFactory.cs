@@ -14,7 +14,7 @@ public class DbContextFactory : IDesignTimeDbContextFactory<BasicRegistersContex
           .AddJsonFile("appsettings.json")
           .Build();
 
-        builder.UseSqlServer(configuration.GetConnectionString("Defa‌​ultConnection"));
+        builder.UseNpgsql(configuration.GetConnectionString("Defa‌​ultConnection"));
         return new BasicRegistersContext(builder.Options);
     }
 }
